@@ -1,5 +1,3 @@
-from functools import cache
-import os
 from dash import Dash
 from dash.development.base_component import Component
 from urllib import parse
