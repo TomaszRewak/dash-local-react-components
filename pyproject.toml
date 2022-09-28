@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "dash_local_react_components"
+version = "0.0.1"
+authors = [
+    { name="Tomasz Rewak" },
+]
+description = "Allows for loading react components in Dash applications directly from local project files, without a separate build process."
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    'dash >= 2.6.0, < 3',
+]
+
+[project.urls]
+"Homepage" = "https://github.com/TomaszRewak/dash-local-react-components"
+"Bug Tracker" = "https://github.com/TomaszRewak/dash-local-react-components/issues"
