@@ -8,7 +8,7 @@ version = "1.1.0"
 authors = [
     { name="Tomasz Rewak", email="tomasz.rewak@gmail.com" },
 ]
-description = "Allows for loading react components in Dash applications directly from local project files, without a separate build process."
+description = "Enables loading react components in Dash applications directly from local project files, without any need for a separate build process."
 readme = "README.md"
 requires-python = ">=3.7"
 classifiers = [
