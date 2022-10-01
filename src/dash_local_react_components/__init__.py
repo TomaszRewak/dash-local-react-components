@@ -1,0 +1,2 @@
+from dash_local_react_components._config import react_import_url
+from dash_local_react_components._functions import load_react_component
