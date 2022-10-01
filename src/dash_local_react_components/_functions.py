@@ -5,7 +5,7 @@ from urllib import parse
 from flask import send_from_directory
 import uuid
 from dash_local_react_components._common import import_file_name, import_namespace
-from dash_local_react_components._config import react_import_url
+from dash_local_react_components._config import config
 from dash_local_react_components._file_generator import generate_import_file
 from dash_local_react_components._types import AppKey, ComponentKey, LibraryKey
 from dash_local_react_components._utils import change_function_name
@@ -25,7 +25,7 @@ def _initialize_app(app: Dash) -> None:
 
     app.config.external_scripts += [f'''
         "></script>
-        <script type="importmap">{{ "imports": {{ "react": "{react_import_url}" }} }}</script>
+        <script type="importmap">{{ "imports": {{ "react": "{config.react_import_url}" }} }}</script>
         <script src="
     ''']
 
