@@ -2,7 +2,7 @@
 
 A small library that allows for loading react components in Dash applications directly from local project files, without any need for a separate build process.
 
-# How to use
+# Setting up
 
 **1. Install the `dash-local-react-components` python package**
 
@@ -38,10 +38,10 @@ from dash_local_react_components import load_react_component
 
 app = Dash()
 
-# if the component is exported from the my_component.js as a default export
+# if the component is exported from the my_component.js module as a default export
 MyComponent = load_react_component(app, 'public', 'my_component.js')
 
-# if the component is exported from the my_component.js as a named export
+# if the component is exported from the my_component.js module as a named export
 MyComponent = load_react_component(app, 'public', 'my_component.js', 'MyComponent')
 ```
 
@@ -54,7 +54,7 @@ app.layout = html.Div([
 ])
 ```
 
-# How to write react components
+# Writing Dash react components
 
 Writing custom react.js components for Dash applications is similar to writing any other react.js components. Nevertheless, there are some differences that worth noting.
 
@@ -83,7 +83,7 @@ MyComponent.defaultProps = {
 
 ```
 
-First, let's address the elephant in the room. As the `dash-local-react-components` removes the need for any build steps from the development process, it does not support `.jsx` files (which are not natively supported by web browsers). This means that one cannot use the native react notation like `<div>my text</div>`, but rather has to fall back to a little bit more involving syntax: `React.createElement('div', {}, 'my text')` (where the first statement gets compiled into the second during a regular build process). Functionally both expressions are identical, so one can still create fully fledged react components without using the .jsx format, it just requires some getting used to and is not as convenient.
+First, let's address the elephant in the room. As the `dash-local-react-components` package removes the need for any build steps from the development process, it does not support `.jsx` files (which are not natively supported by web browsers). This means that one cannot use the native react notation like `<div>my text</div>`, but rather has to fall back to a little bit more involving syntax: `React.createElement('div', {}, 'my text')` (where the first statement gets compiled into the second during a regular build process). Functionally both expressions are identical, so one can still create fully fledged react components without using the .jsx format, it just requires some getting used to and is not as convenient.
 
 Apart form syntactic differences (imposed not necessarily by the Dash framework, but rather by this library), there are also some behavioral changes. Namely, each component used within a layout of a Dash application is provided with a special `setProps` property. It's a function that can be used to change values of other properties of the current component. It behaves similarly to the `setState` function of class-based components, but instead of modifying the state, it modifies the properties. You can use this function to manage the parts of the state of the component that should be exposed to python callbacks of your Dash application.
 
