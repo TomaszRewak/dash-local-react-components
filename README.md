@@ -20,17 +20,7 @@ my-project
   └ my_component.js
 ```
 
-**3. (Optionally) set the ES-compatible react.js package source**
-
-```python
-from dash_local_react_components import config
-
-config.react_import_url = 'https://my-package-source.com/es-react'
-```
-
-This step is optional. If not overwritten, the package will be downloaded from `'https://unpkg.com/es-react@16.13.1'`.
-
-**4. Load your component**
+**3. Load your component**
 
 ```python
 from dash import Dash
@@ -45,7 +35,7 @@ MyComponent = load_react_component(app, 'public', 'my_component.js')
 MyComponent = load_react_component(app, 'public', 'my_component.js', 'MyComponent')
 ```
 
-**5. Add your component to the layout of your application**
+**4. Add your component to the layout of your application**
 
 ```python
 app.layout = html.Div([
