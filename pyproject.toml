@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=65.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "dash-local-react-components"
-version = "1.2.0"
+version = "1.2.2"
 authors = [
     { name="Tomasz Rewak", email="tomasz.rewak@gmail.com" },
 ]
@@ -22,6 +22,9 @@ dependencies = [
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+"*" = ["*.js"]
 
 [project.urls]
 "Homepage" = "https://github.com/TomaszRewak/dash-local-react-components"
