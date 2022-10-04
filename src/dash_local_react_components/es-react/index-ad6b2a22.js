@@ -1,0 +1,1 @@
+import{a as react_production_min}from"./react.production.min-8d2700a6.js";import{c as createCommonjsModule}from"./checkPropTypes-0d3dc276.js";var react=createCommonjsModule((function(module){module.exports=react_production_min}));export{react as r};

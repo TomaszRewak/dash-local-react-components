@@ -2,10 +2,10 @@ from typing import Any, Dict, Set, Type
 from dash import Dash  # type: ignore
 from dash.development.base_component import Component  # type: ignore
 from urllib import parse
-from flask import send_from_directory
+from flask import abort, send_from_directory, send_file
 import uuid
+import os
 from dash_local_react_components._common import import_file_name, import_namespace
-from dash_local_react_components._config import config
 from dash_local_react_components._file_generator import generate_import_file
 from dash_local_react_components._types import AppKey, ComponentKey, LibraryKey
 from dash_local_react_components._utils import change_function_name
@@ -23,9 +23,9 @@ def _initialize_app(app: Dash) -> None:
             window.__start_dash_app__();
     '''
 
-    app.config.external_scripts += [f'''
+    app.config.external_scripts += ['''
         "></script>
-        <script type="importmap">{{ "imports": {{ "react": "{config.react_import_url}" }} }}</script>
+        <script type="importmap">{ "imports": { "react": "/es-react/index.js" } }</script>
         <script src="
     ''']
 
@@ -35,6 +35,18 @@ def _initialize_app(app: Dash) -> None:
             response=generate_import_file(app, _initialized_components),
             status=200,
             mimetype='application/javascript')
+
+    @app.server.route('/es-react/<path:path>')
+    def get_react_file(path) -> Any:
+        root_directory = os.path.split(os.path.realpath(__file__))[0]
+        react_directory = os.path.abspath(os.path.join(root_directory, 'es-react'))
+        requested_path = os.path.abspath(os.path.join(react_directory, path))
+        common_prefix = os.path.commonprefix([requested_path, react_directory])
+
+        if common_prefix != react_directory:
+            abort(404)
+
+        return send_file(requested_path, mimetype='application/javascript')
 
     app.config.external_scripts += [{'src': import_file_name, 'type': 'module', 'async': 'false', 'defer': 'false'}]
 
