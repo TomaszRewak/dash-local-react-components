@@ -31,3 +31,10 @@ def generate_import_file(app: Dash, components: Dict[ComponentKey, Type[Componen
     ]
 
     return header + '\n'.join(component_imports) + footer
+
+
+def generate_react_file():
+    return '''
+        React = window.React;
+        export default React;
+    '''
